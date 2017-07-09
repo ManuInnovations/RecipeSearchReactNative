@@ -3,29 +3,12 @@ import ReactNative from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { ActionCreators } from '../actions'
-
-const {
-  View,
-  Text,
-  TouchableHighlight
-} = ReactNative
+import Home from './Home'
 
 class AppContainer extends Component {
 
-  addRecipe() {
-    this.props.addRecipe();
-  }
-
   render() {
-    return <View>
-        <Text style={{marginTop: 20}}>
-          I am the app container.
-          Recipe Count: {this.props.recipeCount}
-        </Text>
-        <TouchableHighlight onPress={() => {this.addRecipe() }}>
-          <Text>Add recipe</Text>
-        </TouchableHighlight>
-      </View>
+    return <Home {...this.props} />
   }
 }
 
@@ -37,8 +20,4 @@ function mapDispatchToProps(dispatch){
 
 //store remains empty here, (but usually a function to manipulate the store). Connect takes in two functions. The first is just returning an empty object. The second function is mapDispatchToProps and passes AppContainer.
 //All this stuff is usually just done in the containers, and the other components are simple dumb components.
-export default connect((state) => {
-  return {
-    recipeCount: state.recipeCount
-  }
-}, mapDispatchToProps)(AppContainer);
+export default connect((state) => { return {} }, mapDispatchToProps)(AppContainer);
